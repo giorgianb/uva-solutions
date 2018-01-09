@@ -3,15 +3,20 @@
 #include <limits.h>
 #include <error.h>
 
+#define STR(X) #X
+#define XSTR(X) STR(X)
+#define __LOC__ __FILE__ ":" XSTR (__LINE__)
+#define __LOC_PRE__ __LOC__ ": "
+
 #define NCOLORS 3
 #define NBINS 3
 
 enum color
-  {
-    BROWN = 0,
-    GREEN,
-    CLEAR
-  };
+{
+  BROWN = 0,
+  GREEN,
+  CLEAR
+};
 
 #define LENGTH(arr) (sizeof (arr) / sizeof(arr[0]))
 
@@ -24,19 +29,16 @@ struct bin_arrangement
 {
   enum color color[NBINS];
 };
-  
+
 
 typedef struct bin bin_t;
 typedef struct bin_arrangement bin_arrangement_t;
 
-int
-read_bins (bin_t bins[]);
+int read_bins (bin_t bins[]);
 
-unsigned
-cost (const bin_t bins[], const bin_arrangement_t arrangement);
+unsigned cost (const bin_t bins[], const bin_arrangement_t arrangement);
 
-char
-color_to_char (enum color c);
+char color_to_char (enum color c);
 
 int
 main (void)
@@ -69,10 +71,10 @@ main (void)
       for (size_t i = 0; i < LENGTH (min_arrangement->color); ++i)
 	if (putchar (color_to_char (min_arrangement->color[i])) == EOF)
 	  {
-	    perror ("102.c");
+	    perror (__LOC__);
 	    exit (EXIT_FAILURE);
 	  }
-      
+
       printf (" %u\n", min_cost);
     }
 
@@ -87,7 +89,7 @@ read_bins (bin_t bins[])
     for (size_t j = 0; j < NCOLORS; ++j)
       if (scanf ("%u", &bins[i].count[j]) != 1)
 	goto done;
- done:
+done:
   return nread;
 }
 
@@ -97,7 +99,7 @@ cost (const bin_t bins[], const bin_arrangement_t arrangement)
   unsigned cost = 0;
   for (size_t i = 0; i < LENGTH (arrangement.color); ++i)
     for (size_t j = 0; j < LENGTH (bins[i].count); ++j)
-      if (j != arrangement.color[i]) /* if the color doesn't match that of the arrangement */
+      if (j != arrangement.color[i])	/* if the color doesn't match that of the arrangement */
 	cost += bins[i].count[j];
 
   return cost;
@@ -115,7 +117,7 @@ color_to_char (enum color c)
     case CLEAR:
       return 'C';
     default:
-      fprintf (stderr, "Unexpected color: %d\n", c);
+      fprintf (stderr, __LOC_PRE__ "Unexpected color: %d\n", c);
       exit (EXIT_FAILURE);
     }
 }

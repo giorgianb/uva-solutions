@@ -1,3 +1,4 @@
+/* Problem URL: https://uva.onlinejudge.org/external/6/661.pdf */
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>

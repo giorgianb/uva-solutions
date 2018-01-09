@@ -1,3 +1,4 @@
+/* Problem URL: https://uva.onlinejudge.org/external/1/102.pdf */
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>

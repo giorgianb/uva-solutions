@@ -1,3 +1,4 @@
+/* Problem URL: https://uva.onlinejudge.org/external/2/272.pdf */
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>

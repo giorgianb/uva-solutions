@@ -1,4 +1,4 @@
-/* Problem URL: https://uva.onlinejudge.org/external/100/10082.pdf */
+/* Problem URL: https://uva.onlinejudge.org/external/105/10528.pdf */
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>

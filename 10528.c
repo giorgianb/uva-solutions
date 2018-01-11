@@ -58,7 +58,7 @@ main (void)
   uint16_t scale = ~((uint16_t) 0);
   while ((c = getchar ()) != EOF)
     {
-      /* hit the end in the word "END" */
+      /* hit the "N" in the word "END" */
       if (c == 'N')
 	break;
 

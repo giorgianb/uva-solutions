@@ -45,7 +45,8 @@ main (void)
       bool used[MAXSTRLEN] = { 0 };
       for (size_t j = 0; j < len; ++j)
 	{
-	  size_t nth = nperm / fac (len - j - 1);
+	  const unsigned long long div = fac (len - j - 1);
+	  const size_t nth = nperm / div;
 
 	  unsigned nunused = 0;
 	  size_t pos;
@@ -56,13 +57,11 @@ main (void)
 	  while (used[pos] && ++pos < len)
 	    ;
 
-	  assert (nunused == nth);
-	  assert (pos < len);
 	  perm[j] = s[pos];
 	  used[pos] = true;
 
-	  assert (nperm >= (nth * fac (len - j - 1)));
-	  nperm -= (nth * fac (len - j - 1));
+
+	  nperm -= (nth * div);
 	}
       perm[len] = '\0';
 
